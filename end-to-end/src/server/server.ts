@@ -3,7 +3,7 @@ import * as path from "path";
 import * as bodyParser from "body-parser";
 import {DispatcherFactory, RpcBehavior, ExpressRequestContext} from "service-model";
 import {MongoClient} from "mongodb";
-import {Configuration, AnnotationMappingProvider, ChangeTrackingType} from "hydrate-mongodb";
+import {Configuration, AnnotationMappingProvider} from "hydrate-mongodb";
 import {TodoService} from "./todoService";
 import {HydrateBehavior} from "./hydrateBehavior";
 import {Registry} from "./registry";
@@ -19,7 +19,6 @@ MongoClient.connect("mongodb://localhost:27017/test", (err, db) => {
 
     // configure hydrate and create the session factory
     var config = new Configuration();
-    config.changeTracking = ChangeTrackingType.DeferredImplicit;
     config.addMapping(new AnnotationMappingProvider(model));
 
     config.createSessionFactory(db, (err, sessionFactory) => {
