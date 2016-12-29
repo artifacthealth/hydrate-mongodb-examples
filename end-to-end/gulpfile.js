@@ -22,7 +22,7 @@ gulp.task('build-server', ['copy-public'], function() {
 
     return gulp.src(['typings/**/*.d.ts', 'src/server/**/*.ts' ])
         .pipe(sourcemaps.init())
-        .pipe(ts(tsProject))
+        .pipe(tsProject())
         .pipe(sourcemaps.write(".", { includeContent: true, sourceRoot: process.cwd() + "/" }))
         .pipe(gulp.dest('build'))
 });
